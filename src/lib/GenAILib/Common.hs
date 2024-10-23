@@ -1,6 +1,6 @@
 {-# LANGUAGE DuplicateRecordFields, OverloadedRecordDot #-}
 
-module LLMClient.Common
+module GenAILib.Common
   where
 
 import Control.Arrow ( (&&&) )
@@ -18,7 +18,7 @@ import Formatting ( (%), formatToString, int, text )
 import GHC.Generics ( Generic )
 import Text.Read ( readMaybe )
 
-import LLMClient.System.Log ( Priority (DEBUG) )
+import GenAILib.System.Log ( Priority (DEBUG) )
 
 
 newtype Model = Model TL.Text

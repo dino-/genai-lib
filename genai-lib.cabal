@@ -1,10 +1,11 @@
 cabal-version: 2.2
 
-name: llm-client
+name: genai-lib
 version: 1.3
-synopsis: Command line tool for interacting with an ollama server
-description: Command line tool providing more features and control than
-  ollama's out-of-the-box cli tooling.
+synopsis: Library and command line tool for interacting with various generative
+  AI LLMs
+description: Library and command line tool for performing completions and chats
+  with various generative AI LLMs (Large Language Models).
 author: Dino Morelli
 maintainer: dino@ui3.info
 copyright: 2024 Dino Morelli
@@ -20,7 +21,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/dino-/llm-client
+  location: https://github.com/dino-/genai-lib
 
 common lang
   default-language: Haskell2010
@@ -63,9 +64,9 @@ common lang
 library
   import: lang
   exposed-modules:
-    LLMClient.Common
-    LLMClient.HTTP
-    LLMClient.System.Log
+    GenAILib.Common
+    GenAILib.HTTP
+    GenAILib.System.Log
   hs-source-dirs:
     src/lib
   build-depends:
@@ -77,18 +78,18 @@ library
     , servant-client
     , string-conv
 
-executable llm-client
+executable genai
   import: lang
   main-is: Main.hs
   hs-source-dirs:
     src/app
   other-modules:
-    LLMClient.Opts
-    Paths_llm_client
+    GenAILib.Opts
+    Paths_genai_lib
   autogen-modules:
-    Paths_llm_client
+    Paths_genai_lib
   build-depends:
     , heredoc
-    , llm-client
+    , genai-lib
     , optparse-applicative
     , prettyprinter

@@ -1,20 +1,20 @@
-# llm-client
+# genai-lib
 
 
 ## Synopsis
 
-Command line tool for interacting with an ollama server
+Library and command line tool for interacting with various generative AI LLMs
 
 
 ## Description
 
-Command line tool providing more features and control than ollama's
-out-of-the-box cli tooling.
+Library and command line tool for performing completions and chats with various
+generative AI LLMs (Large Language Models).
 
 
 ## Getting source
 
-Source code is available from github at the [llm-client](https://github.com/dino-/llm-client) project page.
+Source code is available from github at the [genai-lib](https://github.com/dino-/genai-lib) project page.
 
 
 ## Contact

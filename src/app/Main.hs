@@ -3,11 +3,11 @@
 import Data.Text.Lazy.IO qualified as TL
 import System.IO ( stdin )
 
-import LLMClient.Common ( Options (host, rawOutput, verbose), mkLLMRequest,
+import GenAILib.Common ( Options (host, rawOutput, verbose), mkLLMRequest,
   verbosityToPriority )
-import LLMClient.HTTP ( display, doCompletion )
-import LLMClient.Opts ( parseOpts )
-import LLMClient.System.Log ( infoM, initLogging, lname )
+import GenAILib.HTTP ( display, doCompletion )
+import GenAILib.Opts ( parseOpts )
+import GenAILib.System.Log ( infoM, initLogging, lname )
 
 
 main :: IO ()

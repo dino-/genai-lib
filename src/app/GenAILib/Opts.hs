@@ -1,6 +1,6 @@
 {-# LANGUAGE DuplicateRecordFields, OverloadedRecordDot, QuasiQuotes #-}
 
-module LLMClient.Opts
+module GenAILib.Opts
   ( parseOpts
   )
   where
@@ -10,12 +10,12 @@ import Data.Version ( showVersion )
 import Formatting ( (%+), format, formatToString, string )
 import Formatting.ShortFormatters ( s )
 import Options.Applicative
-import Paths_llm_client ( version )
+import Paths_genai_lib ( version )
 import Prettyprinter ( pretty )
 import System.Environment ( getProgName )
 import Text.Heredoc ( here )
 
-import LLMClient.Common ( Host (..), Model (..), Options (Options),
+import GenAILib.Common ( Host (..), Model (..), Options (Options),
   RawOutput (..), Stream (..), System (..), Verbose (..), convertOptions,
   defaultHost, defaultModel, hostFromString )
 
@@ -111,7 +111,7 @@ response on STDOUT
 
 example usage
 
-    $ echo "Why is the sky blue?" | llm-client -m 'some-fancy-model'
+    $ echo "Why is the sky blue?" | genai -m 'some-fancy-model'
 
 WHY WAS THIS DONE?
 
@@ -123,7 +123,7 @@ but as far as I can see there's no easy way to use this method to change
 options like the temperature and seed. This software allows greater control
 over the options.
 
-    $ echo "Tell me a story" | llm-client -m 'amodel' -o temperature:0.2
+    $ echo "Tell me a story" | genai -m 'amodel' -o temperature:0.2
 
 LLM OPTIONS
 

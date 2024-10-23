@@ -1,6 +1,6 @@
 {-# LANGUAGE DataKinds, TypeOperators #-}
 
-module LLMClient.HTTP
+module GenAILib.HTTP
   ( display
   , doCompletion
   )
@@ -19,8 +19,8 @@ import Servant.Client ( BaseUrl (..), Scheme (Http), ClientM, client,
   mkClientEnv, runClientM )
 import System.Exit ( exitFailure )
 
-import LLMClient.Common ( Host (..), OllamaRequest, RawOutput (..) )
-import LLMClient.System.Log ( debugM, emergencyM, errorM, lname )
+import GenAILib.Common ( Host (..), OllamaRequest, RawOutput (..) )
+import GenAILib.System.Log ( debugM, emergencyM, errorM, lname )
 
 
 {- NOTE: The reason we've chosen Aeson's Value type for the response is we want

@@ -1,4 +1,4 @@
-module LLMClient.System.Log
+module GenAILib.System.Log
   ( initLogging, lname
   , logTest
 
