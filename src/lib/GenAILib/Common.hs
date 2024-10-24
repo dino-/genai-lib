@@ -24,9 +24,6 @@ newtype Model = Model TL.Text
 
 instance ToJSON Model
 
-defaultModel :: String
-defaultModel = "llama3.1:8b"
-
 
 newtype Prompt = Prompt TL.Text
   deriving Generic

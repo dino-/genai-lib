@@ -13,12 +13,12 @@ import GenAILib.System.Log (Priority (DEBUG))
 
 data CLIOptions = CLIOptions
   { host :: Host
-  , model :: Model
   , system :: Maybe System
   , llmOptions :: LLMOptions
   , stream :: Stream
   , rawOutput :: RawOutput
   , verbose :: Verbose
+  , model :: Model
   }
 
 

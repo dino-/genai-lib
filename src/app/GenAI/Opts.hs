@@ -10,7 +10,7 @@ import Data.Version (showVersion)
 import Formatting ((%+), format, formatToString, string)
 import Formatting.ShortFormatters (s)
 import GenAILib.Common (Host (..), Model (..), RawOutput (..), Stream (..),
-  System (..), convertOptions, defaultHost, defaultModel, hostFromString)
+  System (..), convertOptions, defaultHost, hostFromString)
 import Options.Applicative
 import Paths_genai_lib (version)
 import Prettyprinter (pretty)
@@ -41,15 +41,6 @@ parser = CLIOptions
         <> showDefault
         <> value defaultHost
         )
-  <*> ( Model . pack <$> strOption
-        (  long "model"
-        <> short 'm'
-        <> metavar "MODEL_ID"
-        <> help "Model identifier, see available models with `ollama list`"
-        <> showDefault
-        <> value defaultModel
-        )
-      )
   -- NOTE: The inner <$> is for Maybe, the outer <$> is for Parser
   <*> ( (System . pack <$>) <$> optional ( strOption
         (  long "system"
@@ -82,6 +73,11 @@ parser = CLIOptions
         <> help "Enable verbose output. Note: All logging goes to stderr"
         )
       )
+  <*> ( Model . pack <$> argument str
+        (  metavar "MODEL_ID"
+        <> help "Model identifier, see available models with `ollama list`"
+        )
+      )
 
 
 versionHelper :: String -> Parser (a -> a)
@@ -111,7 +107,7 @@ response on STDOUT
 
 example usage
 
-    $ echo "Why is the sky blue?" | genai -m 'some-fancy-model'
+    $ echo "Why is the sky blue?" | genai some-fancy-model
 
 WHY WAS THIS DONE?
 
@@ -123,7 +119,7 @@ but as far as I can see there's no easy way to use this method to change
 options like the temperature and seed. This software allows greater control
 over the options.
 
-    $ echo "Tell me a story" | genai -m 'amodel' -o temperature:0.2
+    $ echo "Tell me a story" | genai some-other-model -o temperature:0.2
 
 LLM OPTIONS
 
