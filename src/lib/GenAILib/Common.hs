@@ -1,24 +1,22 @@
-{-# LANGUAGE DuplicateRecordFields, OverloadedRecordDot #-}
+{-# LANGUAGE DuplicateRecordFields #-}
 
 module GenAILib.Common
   where
 
 import Control.Arrow ( (&&&) )
 import Control.Monad ( when )
-import Data.Aeson ( Key, ToJSON, Value (Number, Object, String),
+import Data.Aeson ( Key, ToJSON, Value (Number, String),
   defaultOptions, genericToEncoding, genericToJSON, object, omitNothingFields,
   toEncoding, toJSON )
 import Data.Aeson qualified as Aeson
 import Data.Aeson.Key ( fromString )
-import Data.Aeson.Types ( Pair, emptyObject )
+import Data.Aeson.Types (Pair)
 import Data.Maybe ( mapMaybe )
 import Data.String.Conv ( toS )
 import Data.Text.Lazy qualified as TL
 import Formatting ( (%), formatToString, int, text )
 import GHC.Generics ( Generic )
 import Text.Read ( readMaybe )
-
-import GenAILib.System.Log ( Priority (DEBUG) )
 
 
 newtype Model = Model TL.Text
@@ -61,14 +59,6 @@ instance ToJSON OllamaRequest where
   toEncoding = genericToEncoding customOptions
 
 
-mkLLMRequest :: Options -> TL.Text -> OllamaRequest
-mkLLMRequest opts promptText = OllamaRequest opts.model opts.system
-  (Prompt promptText) opts.stream (wrapMaybe opts.llmOptions.v)
-  where
-    wrapMaybe o@(Object _) = if o == emptyObject then Nothing else Just o
-    wrapMaybe _ = Nothing
-
-
 splitAtColon :: String -> Maybe (String, String)
 splitAtColon combinedStr = do
   let (leftSide, rightSide) = takeWhile (/= ':') &&& dropWhile (/= ':') $ combinedStr
@@ -97,23 +87,15 @@ newtype System = System TL.Text
 
 instance ToJSON System
 
-newtype RawOutput = RawOutput Bool
 
-data Options = Options
-  { host :: Host
-  , model :: Model
-  , system :: Maybe System
-  , llmOptions :: LLMOptions
-  , stream :: Stream
-  , rawOutput :: RawOutput
-  , verbose :: Verbose
-  }
+newtype RawOutput = RawOutput Bool
 
 
 newtype LLMOptions = LLMOptions { v :: Value }
   deriving Generic
 
 instance ToJSON LLMOptions
+
 
 -- For debugging the LLM options parsing, unused most of the time
 debugOptsJSON :: LLMOptions -> Value
@@ -129,12 +111,3 @@ convertTypes :: (String, String) -> (Key, Value)
 -- Turns out the only non-number option we're interested in for Ollama is "stop"
 convertTypes (keystr@"stop", valstr) = (fromString keystr, String . toS $ valstr)
 convertTypes (keystr, valstr) = (fromString keystr, Number . read $ valstr)
-
-
-newtype Verbose = Verbose Bool
-  deriving Show
-
-
-verbosityToPriority :: Verbose -> Maybe Priority
-verbosityToPriority (Verbose True) = Just DEBUG
-verbosityToPriority (Verbose False) = Nothing

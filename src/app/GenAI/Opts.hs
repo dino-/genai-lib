@@ -1,6 +1,6 @@
 {-# LANGUAGE DuplicateRecordFields, OverloadedRecordDot, QuasiQuotes #-}
 
-module GenAILib.Opts
+module GenAI.Opts
   ( parseOpts
   )
   where
@@ -9,15 +9,15 @@ import Data.Text.Lazy ( pack )
 import Data.Version ( showVersion )
 import Formatting ( (%+), format, formatToString, string )
 import Formatting.ShortFormatters ( s )
+import GenAILib.Common (Host (..), Model (..), RawOutput (..), Stream (..),
+  System (..), convertOptions, defaultHost, defaultModel, hostFromString)
 import Options.Applicative
 import Paths_genai_lib ( version )
 import Prettyprinter ( pretty )
 import System.Environment ( getProgName )
 import Text.Heredoc ( here )
 
-import GenAILib.Common ( Host (..), Model (..), Options (Options),
-  RawOutput (..), Stream (..), System (..), Verbose (..), convertOptions,
-  defaultHost, defaultModel, hostFromString )
+import GenAI.Common (Options (..), Verbose (..))
 
 
 readHost :: ReadM Host
