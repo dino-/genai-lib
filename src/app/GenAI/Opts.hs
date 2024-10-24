@@ -17,7 +17,7 @@ import Prettyprinter (pretty)
 import System.Environment (getProgName)
 import Text.Heredoc (here)
 
-import GenAI.Common (Options (..), Verbose (..))
+import GenAI.Common (CLIOptions (..), Verbose (..))
 
 
 readHost :: ReadM Host
@@ -31,8 +31,8 @@ readHost = eitherReader (\hostPortStr ->
 
 
 {- HLINT ignore "Functor law" -}
-parser :: Parser Options
-parser = Options
+parser :: Parser CLIOptions
+parser = CLIOptions
   <$> option readHost
         (  long "host"
         <> short 'H'
@@ -93,7 +93,7 @@ versionHelper progName =
   ]
 
 
-parseOpts :: IO Options
+parseOpts :: IO CLIOptions
 parseOpts = do
   pn <- getProgName
   execParser $ info (parser <**> helper <**> versionHelper pn)

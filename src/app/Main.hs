@@ -5,7 +5,7 @@ import GenAILib.HTTP (display, doCompletion)
 import GenAILib.System.Log (infoM, initLogging, lname)
 import System.IO (stdin)
 
-import GenAI.Common (Options (host, rawOutput, verbose), mkLLMRequest,
+import GenAI.Common (CLIOptions (host, rawOutput, verbose), mkLLMRequest,
   verbosityToPriority)
 import GenAI.Opts (parseOpts)
 

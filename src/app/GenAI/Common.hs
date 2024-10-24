@@ -11,7 +11,7 @@ import GenAILib.Common (Host, LLMOptions (..), Model, OllamaRequest (..),
 import GenAILib.System.Log (Priority (DEBUG))
 
 
-data Options = Options
+data CLIOptions = CLIOptions
   { host :: Host
   , model :: Model
   , system :: Maybe System
@@ -31,7 +31,7 @@ verbosityToPriority (Verbose True) = Just DEBUG
 verbosityToPriority (Verbose False) = Nothing
 
 
-mkLLMRequest :: Options -> TL.Text -> OllamaRequest
+mkLLMRequest :: CLIOptions -> TL.Text -> OllamaRequest
 mkLLMRequest opts promptText = OllamaRequest opts.model opts.system
   (Prompt promptText) opts.stream (wrapMaybe opts.llmOptions.v)
   where
