@@ -65,6 +65,9 @@ splitAtColon combinedStr = do
 
 data Host = Host TL.Text Int
 
+-- I don't normally do this because it harms debugging when we want to see the
+-- actual Haskell data structure serialized BUT this plays nicer with
+-- optparse-applicative's showDefault
 instance Show Host where
   show (Host hostName port) = formatToString (text % ":" % int) hostName port
 
