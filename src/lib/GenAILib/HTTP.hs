@@ -6,21 +6,21 @@ module GenAILib.HTTP
   )
   where
 
-import Data.Aeson ( Value (Object, String), encode )
+import Data.Aeson (Value (Object, String), encode)
 import Data.Aeson.KeyMap qualified as A
 import Data.ByteString.Lazy qualified as BL
-import Data.Proxy ( Proxy (..) )
-import Data.String.Conv ( toS )
+import Data.Proxy (Proxy (..))
+import Data.String.Conv (toS)
 import Data.Text.IO qualified as TS
-import Formatting ( (%+), formatToString, string )
-import Network.HTTP.Client ( defaultManagerSettings, newManager )
-import Servant.API ( (:>), JSON, Post, ReqBody )
-import Servant.Client ( BaseUrl (..), Scheme (Http), ClientM, client,
-  mkClientEnv, runClientM )
-import System.Exit ( exitFailure )
+import Formatting ((%+), formatToString, string)
+import Network.HTTP.Client (defaultManagerSettings, newManager)
+import Servant.API ((:>), JSON, Post, ReqBody)
+import Servant.Client (BaseUrl (..), Scheme (Http), ClientM, client,
+  mkClientEnv, runClientM)
+import System.Exit (exitFailure)
 
-import GenAILib.Common ( Host (..), OllamaRequest, RawOutput (..) )
-import GenAILib.System.Log ( debugM, emergencyM, errorM, lname )
+import GenAILib.Common (Host (..), OllamaRequest, RawOutput (..))
+import GenAILib.System.Log (debugM, emergencyM, errorM, lname)
 
 
 {- NOTE: The reason we've chosen Aeson's Value type for the response is we want

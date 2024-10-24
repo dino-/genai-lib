@@ -1,13 +1,13 @@
 {-# LANGUAGE OverloadedRecordDot #-}
 
 import Data.Text.Lazy.IO qualified as TL
-import GenAILib.HTTP ( display, doCompletion )
-import GenAILib.System.Log ( infoM, initLogging, lname )
-import System.IO ( stdin )
+import GenAILib.HTTP (display, doCompletion)
+import GenAILib.System.Log (infoM, initLogging, lname)
+import System.IO (stdin)
 
 import GenAI.Common (Options (host, rawOutput, verbose), mkLLMRequest,
   verbosityToPriority)
-import GenAI.Opts ( parseOpts )
+import GenAI.Opts (parseOpts)
 
 
 main :: IO ()

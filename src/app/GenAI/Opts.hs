@@ -5,17 +5,17 @@ module GenAI.Opts
   )
   where
 
-import Data.Text.Lazy ( pack )
-import Data.Version ( showVersion )
-import Formatting ( (%+), format, formatToString, string )
-import Formatting.ShortFormatters ( s )
+import Data.Text.Lazy (pack)
+import Data.Version (showVersion)
+import Formatting ((%+), format, formatToString, string)
+import Formatting.ShortFormatters (s)
 import GenAILib.Common (Host (..), Model (..), RawOutput (..), Stream (..),
   System (..), convertOptions, defaultHost, defaultModel, hostFromString)
 import Options.Applicative
-import Paths_genai_lib ( version )
-import Prettyprinter ( pretty )
-import System.Environment ( getProgName )
-import Text.Heredoc ( here )
+import Paths_genai_lib (version)
+import Prettyprinter (pretty)
+import System.Environment (getProgName)
+import Text.Heredoc (here)
 
 import GenAI.Common (Options (..), Verbose (..))
 

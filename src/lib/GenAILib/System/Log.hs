@@ -8,11 +8,11 @@ module GenAILib.System.Log
   )
   where
 
-import Data.Maybe ( fromMaybe )
-import System.IO ( stderr )
-import System.Log.Formatter ( simpleLogFormatter )
-import System.Log.Handler ( setFormatter )
-import System.Log.Handler.Simple ( streamHandler )
+import Data.Maybe (fromMaybe)
+import System.IO (stderr)
+import System.Log.Formatter (simpleLogFormatter)
+import System.Log.Handler (setFormatter)
+import System.Log.Handler.Simple (streamHandler)
 import System.Log.Logger
 
 

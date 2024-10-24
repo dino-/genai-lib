@@ -3,20 +3,20 @@
 module GenAILib.Common
   where
 
-import Control.Arrow ( (&&&) )
-import Control.Monad ( when )
-import Data.Aeson ( Key, ToJSON, Value (Number, String),
+import Control.Arrow ((&&&))
+import Control.Monad (when)
+import Data.Aeson (Key, ToJSON, Value (Number, String),
   defaultOptions, genericToEncoding, genericToJSON, object, omitNothingFields,
-  toEncoding, toJSON )
+  toEncoding, toJSON)
 import Data.Aeson qualified as Aeson
-import Data.Aeson.Key ( fromString )
+import Data.Aeson.Key (fromString)
 import Data.Aeson.Types (Pair)
-import Data.Maybe ( mapMaybe )
-import Data.String.Conv ( toS )
+import Data.Maybe (mapMaybe)
+import Data.String.Conv (toS)
 import Data.Text.Lazy qualified as TL
-import Formatting ( (%), formatToString, int, text )
-import GHC.Generics ( Generic )
-import Text.Read ( readMaybe )
+import Formatting ((%), formatToString, int, text)
+import GHC.Generics (Generic)
+import Text.Read (readMaybe)
 
 
 newtype Model = Model TL.Text
