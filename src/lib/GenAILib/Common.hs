@@ -42,6 +42,8 @@ newtype Stream = Stream Bool
 instance ToJSON Stream
 
 
+{- ^ This data structure is used to construct the POST body for an Ollama REST call
+-}
 data OllamaRequest = OllamaRequest
   { model :: Model
   , system :: Maybe System
@@ -113,6 +115,7 @@ newtype LLMOptions = LLMOptions { v :: Value }
 
 instance ToJSON LLMOptions
 
+-- For debugging the LLM options parsing, unused most of the time
 debugOptsJSON :: LLMOptions -> Value
 debugOptsJSON = toJSON
 
@@ -123,6 +126,7 @@ pairs' :: [String] -> [Pair]
 pairs' = map convertTypes . mapMaybe splitAtColon
 
 convertTypes :: (String, String) -> (Key, Value)
+-- Turns out the only non-number option we're interested in for Ollama is "stop"
 convertTypes (keystr@"stop", valstr) = (fromString keystr, String . toS $ valstr)
 convertTypes (keystr, valstr) = (fromString keystr, Number . read $ valstr)
 
